@@ -1,0 +1,52 @@
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique
+  email String? @unique
+  phone String? @unique
+  github_id String? @unique
+  naver_id String? @unique
+  password String?
+  avatar String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  smsTokens SMSToken[]
+  products Product[]
+}
+
+model SMSToken {
+  id Int @id @default(autoincrement())
+  token String @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id Int
+
+  @@index([user_id])
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  title String
+  price Float
+  description String
+  photo String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id Int
+
+  @@index([user_id])
+}
