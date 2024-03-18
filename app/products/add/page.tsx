@@ -6,6 +6,9 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 import { getUploadUrl, uploadProduct } from "./actions";
 import { useFormState } from "react-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ProductType, productSchema } from "./schema";
 
 export default function AddProduct() {
   const [preview, setPreview] = useState("");
@@ -56,6 +59,9 @@ export default function AddProduct() {
     return uploadProduct(_, formData);
   };
   const [state, action] = useFormState(interceptAction, null);
+  const { register } = useForm<ProductType>({
+    resolver: zodResolver(productSchema),
+  });
   return (
     <div>
       <form action={action} className="flex flex-col gap-5 p-5">
