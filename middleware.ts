@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import getSession from "./lib/session";
+import { PrismaClient } from "@prisma/client/extension";
 
 interface Routes {
   [key: string]: boolean;
