@@ -4,6 +4,9 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 import { Prisma } from "@prisma/client";
 import Link from "next/link";
 
+export const revalidate = 1;
+// false | 0 | number
+
 export type InitialProducts = Prisma.PromiseReturnType<
   typeof getInitialProducts
 >;
