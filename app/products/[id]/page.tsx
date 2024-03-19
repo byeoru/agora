@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { getProduct } from "./actions";
 import getSession from "@/lib/session";
 import Image from "next/image";
