@@ -14,16 +14,18 @@ export type InitialProducts = Prisma.PromiseReturnType<
 export default async function Products() {
   const initialProducts = await getInitialProducts();
   return (
-    <div>
+    <div className="flex">
       <ProductList initialProducts={initialProducts} />
-      <Link
-        href="/products/add"
-        className="bg-orange-500 flex items-center justify-center 
-        rounded-full size-16 fixed bottom-24 right-8 text-white 
+      <div className="fixed w-full h-px flex justify-end items-center bottom-32 max-w-screen-md">
+        <Link
+          href="/products/add"
+          className="bg-orange-500 flex items-center justify-center 
+        rounded-full size-16 mr-10 text-white 
         transition-colors hover:bg-orange-400"
-      >
-        <PlusIcon className="size-10" />
-      </Link>
+        >
+          <PlusIcon className="size-10" />
+        </Link>
+      </div>
     </div>
   );
 }

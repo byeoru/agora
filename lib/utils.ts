@@ -28,3 +28,7 @@ export function formatToTimeAgo(date: Date): string {
     return formatter.format(diff, "days");
   }
 }
+
+export function formatToLocalDate(date: Date): string {
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+}
